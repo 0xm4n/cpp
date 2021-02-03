@@ -46,3 +46,25 @@ comma operator which most often finds use in the for statement. A pair of expres
 ### conditional inclusion
 
 The #if evaluates a constant integer expression. If the expression is non-zero, subsequent lines until an #endif or #elif or #else are included. The expression defined(name) in a #if is 1 if the name has been defined, and 0 otherwise. This can be used to avoid including files multiple times. If this style is used consistently, then each header can itself include any other headers on which it depends, without the user of the header having to deal with the interdependence. The #ifdef and #ifndef are specialized forms that test whether a name is defined.
+
+
+
+### object variable definition
+
+An object is a region of memory with a type that specifics what kind of information can be placed in it. The "places"  in which we store data are called objects. To access an object we need a name. A named object is called a variable and has a specified type that determines what can be put into the object and which operations can be applied. The data items we put into variable are called values. A statement that defines a variable is called a definition, and a definition can provide an initial value
+
+A named object is called a variable.
+
+A statement that introduces a new name into a program and sets aside memory for a variable is called a definition.
+
+### Input
+
+reading of string is terminated by what is called whitespace, that is , space, newline, and tab characters. Otherwise, whitespace by default is ignored by >>. For example, you can add as many spaces as you like before a number to be read; >> will just skip past them and read the number.
+
+### Initialization Assignment
+
+Initialization (giving a variable its initial value)
+
+Assignment (giving a variable a new value)
+
+logically assignment and initialization are different. You can tell the two apart by the type specification that always starts an initialization; an assignment does not have that. In principle, an initialization always finds the variable empty. On the other hand, an assignment must clear out the old value from the variable before putting in the new value.
