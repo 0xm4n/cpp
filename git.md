@@ -1,10 +1,10 @@
-
-
 ### commit
 
 usage: git commit
 
 A commit in  a git repository records a snapshot of all the (tracked) files in your directory.
+
+
 
 ### branch
 
@@ -20,11 +20,15 @@ git branch -f main HEAD~3
 
 moves (by force) the main branch to three parents behind HEAD.
 
+
+
 ### merge
 
 usage: git merge <branch_name>
 
 combine the work from two different branches together. This will allow us to branch off, develop a new feature, and then combine it back in.
+
+
 
 ### rebase
 
@@ -52,11 +56,15 @@ the Caret (^) operator. Each time you append that to a ref name, you are telling
 
 The tilde operator (optionally) takes in a trailing number that specifies the number of parents you would like to ascend.
 
+
+
 ### log
 
 usage: git log
 
 use git log to  see hashes. The upside is that Git is smart about hashes. It only requires you to specify enough characters of the hash until it uniquely identifies the commit.
+
+
 
 ### reset
 
@@ -65,6 +73,8 @@ usage: git reset <commit>
 `git reset` reverts changes by moving a branch reference backwards in time to an older commit. In this sense you can think of it as "rewriting history;" `git reset` will move a branch backwards as if the commit had never been made in the first place.
 
 While resetting works great for local branches on your own machine, its method of "rewriting history" doesn't work for remote branches that others are using.
+
+
 
 ### revert
 
@@ -88,6 +98,8 @@ usage: git checkout <branch_name>
 
 ​			git checkout <tag_name>
 
+
+
 ### tag
 
 usage: git tag <tag_name> <commit>
@@ -97,6 +109,10 @@ they (somewhat) permanently mark certain commits as "milestones" that you can th
 
 
 ### clone
+
+`git clone` in the real world is the command you'll use to create *local* copies of remote repositories (from github for example).
+
+
 
 ### fetch
 
@@ -109,6 +125,8 @@ they (somewhat) permanently mark certain commits as "milestones" that you can th
 
 `git fetch`, however, does not change anything about *your* local state. It will not update your `main` branch or change anything about how your file system looks right now.
 
+
+
 ### pull
 
 once you have new commits available locally, you can incorporate them as if they were just normal commits on other branches. This means you could execute commands like:
@@ -118,3 +136,13 @@ once you have new commits available locally, you can incorporate them as if they
 - `git merge o/main`
 
 In fact, the workflow of *fetching* remote changes and then *merging* them is so common that git actually provides a command that does both at once! That command is `git pull`.
+
+git pull = git fetch + git merge
+
+git pull --rebase = git fetch + git rebase
+
+
+
+### push
+
+`git push` is responsible for uploading *your* changes to a specified remote and updating that remote to incorporate your new commits. Once `git push` completes, all your friends can then download your work from the remote.
