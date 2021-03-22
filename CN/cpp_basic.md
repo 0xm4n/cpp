@@ -10,7 +10,7 @@
 ### inline用太多有什么不好
 
 1. 头文件过大，可读性变差
-2. 对于代码函数较多的内联函数，内联将导致程序变慢. 可能使目标代码量增加，因为编译本身有指令缓存，代码优化的功能。
+2. 对于函数代码较多的内联函数，内联将导致程序变慢. 可能使目标代码量增加，因为编译本身有指令缓存，代码优化的功能。代码区内存占用增加
 
 
 
@@ -91,6 +91,12 @@ https://www.geeksforgeeks.org/difference-pointer-array-c/
 
 ### 4种显式转换static_cast \ dynamic_cast \ const_cast \ reinterpret_cast，分别是在什么时候确定的（编译期，运行期）
 
+static_cast: The static_cast tells the compiler to attempt to convert between two different data types. It will convert between built-in types, even when there is a loss of precision. In addition, the static_cast operator can also convert between **related** pointer types.
+
+const_cast: the const_cast does not cast between different types. Instead it changes the "const-ness" of the expression. It can make something const what was not const before, or it can make something volatile/changeable by getting rid of the const. 
+
+reinterpret_cast: the reinterpret_cast can convert from any built-in type to any other, and from any pointer type to another pointer type. However, it cannot strip a variable's const-ness or volatile-ness. It can however convert between built in data types and pointers without any regard to type safety or const-ness.
+
 https://blog.csdn.net/bzhxuexi/article/details/17021559
 
 https://blog.csdn.net/libaineu2004/article/details/46329447
@@ -98,7 +104,7 @@ https://blog.csdn.net/libaineu2004/article/details/46329447
 dynamic_cast：和static_cast不同，dynamic_cast涉及运行时的类型检查。如果向下转型是安全的（也就是说，如果基类指针或者引用确实指向一个派生类的对象），这个运算符会传回转型过的指针。如果向下转型不安全（即基类指针或者引用没有指向一个派生类的对象），这个运算符会传回空指针。就是说，类层次的向下转换（基类向派生类转换），转换过程中会通过RTTI检查转换类型是否正常，不正常将返回空。
 
 
-### 
+
 
 ### 头文件循环引用问题，简单说一下
 
@@ -149,4 +155,70 @@ struct Foo foo;
 foo.some_array = (int*)malloc(sizeof(int) * foo.array_size);
 free( foo.some_array );
 ```
+
+
+
+### static关键字的作用
+
+1. 隐藏作用域，文件作用域内定义的变量全局可见，static修饰后仅文件内可见
+2. 保持变量内容的持久，函数内的局部变量用static修饰后，生存期变为整个程序
+3. static修饰类的变量或函数：a. 类的静态成员函数属于整个类而非对象。b. 不能将静态成员函数定义为虚函数
+
+https://www.cnblogs.com/biyeymyhjob/archive/2012/07/19/2598815.html
+
+
+
+C++ static 修饰可以修饰构造函数？
+
+
+
+### 为什么static成员函数不能是虚函数？
+
+虚函数需要通过this指针找到vptr，但是static函数没有this指针
+
+
+
+### const关键字用法，初始化
+
+const是C语言的一种关键字，它所限定的变量是不允许被改变的，从而起到保护的作用！const关键字可以用于修饰变量，参数，返回值,甚至函数体。const可以提高程序的健壮性，减少程序出错。
+
+https://blog.csdn.net/guyuealian/article/details/53118850
+
+
+
+### 成员初始化列表的作用
+
+1. 引用型成员变量和const成员变量
+2. 没有默认构造函数的类成员，因为使用初始化列表可以不必调用默认构造函数来初始化，而是直接调用拷贝构造函数初始化。
+3. 初始化基类成员
+4. 性能考虑
+
+https://www.geeksforgeeks.org/when-do-we-use-initializer-list-in-c/
+
+
+
+### 指针和引用的区别
+
+1. 指针：指针是一个变量，只不过这个变量存储的是一个地址，指向内存的一个存储单元；而引用跟原来的变量实质上是同一个东西，只不过是原变量的一个别名而已。
+2. 引用在创建时必须初始化，引用到一个有效对象；而指针在定义时不必初始化，可以在定义后的任何地方重新赋值。
+3. 指针可以是NULL，引用不行
+4. 指针的值在初始化后可以改变，即指向其它的存储单元，而引用在进行初始化后就不会再改变了。
+
+
+
+
+
+### explicit关键字
+
+构造函数修饰符，防止隐式转换
+
+
+
+浅拷贝，深拷贝
+
+计算机怎么知道你指针指向的具体类型
+
+函数指针是个什么东西
+
+ 内存屏障，volatile作用，是否具有原子性，使用volatile会对编译器有什么影响
 
