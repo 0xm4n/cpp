@@ -8,6 +8,8 @@
 
 左值：用户控制lifetime
 
+
+
 ### 移动语义
 
 Move semantics allows an object, under certain conditions, to take ownership of some other object's external resources.
